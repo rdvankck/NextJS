@@ -16,10 +16,16 @@
 - [x] `layout.tsx` dosyasının rolü ve yapısı
 - [x] `page.tsx` ile sayfa oluşturma
 - [x] `{children}` prop'unun anlamı ve kullanımı
+- [x] `loading.tsx` ile yükleme durumları
+- [x] `error.tsx` ile hata yönetimi
+- [x] Header/Footer ekleme
 
 #### Yapılan Uygulamalar:
 - [x] Ana sayfa (`page.tsx`) oluşturuldu
-- [x] About sayfası (`about/page.tsx`) oluşturuldu ve push edildi
+- [x] About sayfası (`about/page.tsx`) oluşturuldu
+- [x] Root layout'a Header/Footer eklendi
+- [x] `loading.tsx` oluşturuldu (spinner animasyonu)
+- [x] `error.tsx` oluşturuldu (hata yönetimi + reset butonu)
 
 #### Anlaşılan Kavramlar:
 | Kavram | Durum |
@@ -28,29 +34,18 @@
 | layout.tsx | ✅ Anlaşıldı |
 | page.tsx | ✅ Anlaşıldı |
 | children prop | ✅ Anlaşıldı |
-| Link component | ✅ Anlaşıldı |
-
----
-
-### 🔄 Sonraki Adım: Layout'a Header/Footer Ekleme
-
-#### Yapılacaklar:
-- [ ] Layout'a Header component ekle
-- [ ] Layout'a Footer component ekle
-- [ ] children konseptini pekiştir
+| loading.tsx | ✅ Anlaşıldı |
+| error.tsx | ✅ Anlaşıldı |
+| "use client" | ✅ Anlaşıldı |
 
 ---
 
 ### ⏳ Bekleyen Konular (Hafta 1)
 
-#### Konu 1 (Kalan):
-- [ ] `loading.tsx` ile yükleme durumları
-- [ ] `error.tsx` ile hata yönetimi
-
 #### Konu 2: Server vs Client Components
 - [ ] Server Component nedir
 - [ ] Client Component ne zaman kullanılır
-- [ ] `"use client"` direktifi
+- [ ] `"use client"` direktifi (detaylı)
 - [ ] İki component türü arasındaki farklar
 
 #### Konu 3: Special Files & Dynamic Routes
@@ -95,13 +90,25 @@ Layout (children alır)
 └────────┴────────────────────────┘
 ```
 
+### loading.tsx
+- Otomatik Suspense boundary oluşturur
+- Sayfa yüklenirken gösterilir
+- `animate-spin` ile döndürme animasyonu
+
+### error.tsx
+- `"use client"` ZORUNLU (event handler var)
+- `error` ve `reset` props alır
+- `reset()` ile sayfayı tekrar yükler
+
 ### Klasör Yapısı = URL Yapısı
 ```
 app/
+├── layout.tsx    → Root layout (tüm sayfaları sarmalar)
 ├── page.tsx      → /
+├── loading.tsx   → Yükleme UI
+├── error.tsx     → Hata UI
 ├── about/
 │   └── page.tsx  → /about
-└── layout.tsx    → Tüm sayfaları sarmalar
 ```
 
 ---
