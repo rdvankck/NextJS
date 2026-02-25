@@ -40,13 +40,32 @@
 
 ---
 
-### ⏳ Bekleyen Konular (Hafta 1)
+### ✅ Konu 2: Server vs Client Components (TAMAMLANDI)
 
-#### Konu 2: Server vs Client Components
-- [ ] Server Component nedir
-- [ ] Client Component ne zaman kullanılır
-- [ ] `"use client"` direktifi (detaylı)
-- [ ] İki component türü arasındaki farklar
+#### Öğrenilen Konular:
+- [x] Server Component nedir (varsayılan, server'da çalışır)
+- [x] Client Component ne zaman kullanılır (useState, onClick, useEffect)
+- [x] `"use client"` direktifi (detaylı)
+- [x] İki component türü arasındaki farklar
+
+#### Yapılan Uygulamalar:
+- [x] `Counter.tsx` Client Component oluşturuldu
+- [x] `useState` ile sayaç state'i yönetimi
+- [x] `onClick` event'ları ile artırma/azaltma
+- [x] Counter'ı `page.tsx`'te kullanma
+
+#### Anlaşılan Kavramlar:
+| Kavram | Durum |
+|--------|-------|
+| Server Component | ✅ Anlaşıldı |
+| Client Component | ✅ Anlaşıldı |
+| "use client" | ✅ Anlaşıldı |
+| useState hook | ✅ Anlaşıldı |
+| onClick events | ✅ Anlaşıldı |
+
+---
+
+### ⏳ Bekleyen Konular (Hafta 1)
 
 #### Konu 3: Special Files & Dynamic Routes
 - [ ] `not-found.tsx` ile 404 sayfası
