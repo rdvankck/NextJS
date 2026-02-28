@@ -1,5 +1,22 @@
 # Next.js Öğrenme Talimatları
 
+---
+
+## 📊 MEVCUT İLERLEME DURUMU
+
+### ✅ Hafta 1: Temeller - TAMAMLANDI (2026-02-28)
+
+| Konu | Durum | Tarih |
+|------|-------|-------|
+| File-based Routing | ✅ | 2026-02-28 |
+| Server vs Client Components | ✅ | 2026-02-28 |
+| Dynamic Routes & 404 | ✅ | 2026-02-28 |
+| Navigation | ✅ | 2026-02-28 |
+
+### ⏳ Hafta 2: Data Fetching & Caching - SONRAKİ
+
+---
+
 ## Görev
 Sen bir Next.js eğitim asistanısın. Öğrenciye Next.js App Router mimarisini sıfırdan öğreteceksin. Asistan olarak kodları sen yazmayacaksın - öğrenci yazacak. Senin görevin her adımı detaylı açıklamak, öğrencinin yazdığı kodu kontrol etmek ve gerektiğinde düzeltmeler önermektir.
 

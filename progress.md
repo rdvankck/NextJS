@@ -1,15 +1,15 @@
 # Next.js Öğrenme İlerlemesi
 
 ## Genel Durum
-- **Başlangıç Tarihi:** 2026-02-22
+- **Başlangıç Tarihi:** 2026-02-28
 - **Mevcut Hafta:** Hafta 1
 - **Proje:** my-next-app
 
 ---
 
-## Hafta 1: Temeller - "Yeni Dünyaya Giriş"
+## Hafta 1: Temeller - "Yeni Dünyaya Giriş" ✅ TAMAMLANDI
 
-### ✅ Konu 1: File-based Routing (TAMAMLANDI)
+### ✅ Konu 1: File-based Routing
 
 #### Öğrenilen Konular:
 - [x] `app` klasör yapısı
@@ -27,109 +27,149 @@
 - [x] `loading.tsx` oluşturuldu (spinner animasyonu)
 - [x] `error.tsx` oluşturuldu (hata yönetimi + reset butonu)
 
-#### Anlaşılan Kavramlar:
-| Kavram | Durum |
-|--------|-------|
-| File-based Routing | ✅ Anlaşıldı |
-| layout.tsx | ✅ Anlaşıldı |
-| page.tsx | ✅ Anlaşıldı |
-| children prop | ✅ Anlaşıldı |
-| loading.tsx | ✅ Anlaşıldı |
-| error.tsx | ✅ Anlaşıldı |
-| "use client" | ✅ Anlaşıldı |
-
 ---
 
-### ✅ Konu 2: Server vs Client Components (TAMAMLANDI)
+### ✅ Konu 2: Server vs Client Components
 
 #### Öğrenilen Konular:
 - [x] Server Component nedir (varsayılan, server'da çalışır)
 - [x] Client Component ne zaman kullanılır (useState, onClick, useEffect)
-- [x] `"use client"` direktifi (detaylı)
+- [x] `"use client"` direktifi
 - [x] İki component türü arasındaki farklar
 
 #### Yapılan Uygulamalar:
 - [x] `Counter.tsx` Client Component oluşturuldu
 - [x] `useState` ile sayaç state'i yönetimi
 - [x] `onClick` event'ları ile artırma/azaltma
-- [x] Counter'ı `page.tsx`'te kullanma
-
-#### Anlaşılan Kavramlar:
-| Kavram | Durum |
-|--------|-------|
-| Server Component | ✅ Anlaşıldı |
-| Client Component | ✅ Anlaşıldı |
-| "use client" | ✅ Anlaşıldı |
-| useState hook | ✅ Anlaşıldı |
-| onClick events | ✅ Anlaşıldı |
 
 ---
 
-### ⏳ Bekleyen Konular (Hafta 1)
+### ✅ Konu 3: Special Files & Dynamic Routes
 
-#### Konu 3: Special Files & Dynamic Routes
-- [ ] `not-found.tsx` ile 404 sayfası
-- [ ] `[id]/page.tsx` ile dinamik rotalar
-- [ ] `[...slug]/page.tsx` ile catch-all rotalar
-- [ ] Route parametrelerine erişim
+#### Öğrenilen Konular:
+- [x] `not-found.tsx` ile 404 sayfası (root)
+- [x] `posts/not-found.tsx` ile özel 404 sayfası
+- [x] `[id]/page.tsx` ile dinamik rotalar
+- [x] `params: Promise<{ id: string }>` ile parametre erişimi
+- [x] `notFound()` fonksiyonu ile manuel 404 tetikleme
 
-#### Konu 4: Navigation
-- [ ] `next/link` component'i kullanımı
-- [ ] `useRouter` hook'u
-- [ ] Programatik yönlendirme
-- [ ] `usePathname` ve `useSearchParams` hooks
+#### Yapılan Uygulamalar:
+- [x] `/posts` liste sayfası oluşturuldu
+- [x] `/posts/[id]` dinamik sayfa oluşturuldu
+- [x] Post bulunamadığında 404 gösterme
 
 ---
 
-## Hafta 2-5: Bekliyor
+### ✅ Konu 4: Navigation
 
-### Hafta 2: Data Fetching & Caching
-### Hafta 3: Rendering Strategies
-### Hafta 4: Full-stack Features & Optimization
-### Final Hafta: Advanced Topics & Deployment
+#### Öğrenilen Konular:
+- [x] `next/link` component'i kullanımı
+- [x] `<a href>` vs `<Link href>` farkı
+- [x] `useRouter` hook'u
+- [x] `router.push()`, `router.back()`, `router.refresh()`
+- [x] `usePathname` ile mevcut URL'yi öğrenme
+- [x] `useSearchParams` ile query parametreleri
+
+#### Yapılan Uygulamalar:
+- [x] `Navigation.tsx` component oluşturuldu
+- [x] `BackButton.tsx` component oluşturuldu
+- [x] Layout'ta `<Link>` kullanımı
+- [x] Pathname ve searchParams görüntüleme
+
+---
+
+## Hafta 1 Özet
+
+| Konu | Durum |
+|------|-------|
+| File-based Routing | ✅ Tamamlandı |
+| Server vs Client Components | ✅ Tamamlandı |
+| Dynamic Routes & 404 | ✅ Tamamlandı |
+| Navigation | ✅ Tamamlandı |
+
+---
+
+## Hafta 2: Data Fetching & Caching ⏳ SONRAKİ
+
+### Konu 1: Server-side Data Fetching
+- [ ] Async component'ler yazma
+- [ ] Component içinde direkt `fetch` kullanımı
+- [ ] TypeScript ile tip güvenliği
+
+### Konu 2: Caching Strategies
+- [ ] `force-cache`: Statik veri için
+- [ ] `no-store`: Her zaman güncel veri için
+- [ ] `revalidate`: ISR (Incremental Static Regeneration)
+
+### Konu 3: Server Actions
+- [ ] Server Action nedir
+- [ ] `"use server"` direktifi
+- [ ] Form submission ile Server Action
+
+### Konu 4: Data Mutations
+- [ ] `revalidatePath` ile cache yenileme
+- [ ] `revalidateTag` ile tag-based revalidation
+
+---
+
+## Proje Yapısı
+
+```
+src/app/
+├── layout.tsx              → Root layout (Header + Footer)
+├── page.tsx                → Ana sayfa (/)
+├── loading.tsx             → Yükleme UI
+├── error.tsx               → Hata UI
+├── not-found.tsx           → 404 sayfası
+├── components/
+│   ├── Counter.tsx         → Client Component (useState)
+│   ├── BackButton.tsx      → Geri dön butonu
+│   └── Navigation.tsx      → Navigation buttons
+├── about/
+│   └── page.tsx            → /about
+└── posts/
+    ├── page.tsx            → /posts (liste)
+    ├── not-found.tsx       → Post bulunamadı
+    └── [id]/
+        └── page.tsx        → /posts/1, /posts/2...
+```
 
 ---
 
 ## Önemli Notlar
 
-### children Nedir?
-```
-children = İçine konulan içeriği temsil eder
+### Navigation Hooks
+```tsx
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
-Layout (children alır)
-    ↓
-    └── page.tsx içeriği buraya gelir
+const router = useRouter();
+const pathname = usePathname();
+const searchParams = useSearchParams();
 
-┌────────┬────────────────────────┐
-│  URL   │   children ne olur?    │
-├────────┼────────────────────────┤
-│ /      │ page.tsx içeriği       │
-├────────┼────────────────────────┤
-│ /about │ about/page.tsx içeriği │
-└────────┴────────────────────────┘
+router.push("/");      // Sayfaya git
+router.back();         // Geri dön
+router.refresh();      // Yenile
 ```
 
-### loading.tsx
-- Otomatik Suspense boundary oluşturur
-- Sayfa yüklenirken gösterilir
-- `animate-spin` ile döndürme animasyonu
+### Dynamic Routes
+```tsx
+// app/posts/[id]/page.tsx
+type Props = {
+  params: Promise<{ id: string }>;
+};
 
-### error.tsx
-- `"use client"` ZORUNLU (event handler var)
-- `error` ve `reset` props alır
-- `reset()` ile sayfayı tekrar yükler
-
-### Klasör Yapısı = URL Yapısı
+const { id } = await params;  // Next.js 15: await gerekli!
 ```
-app/
-├── layout.tsx    → Root layout (tüm sayfaları sarmalar)
-├── page.tsx      → /
-├── loading.tsx   → Yükleme UI
-├── error.tsx     → Hata UI
-├── about/
-│   └── page.tsx  → /about
+
+### notFound() Fonksiyonu
+```tsx
+import { notFound } from "next/navigation";
+
+if (!post) {
+  notFound();  // En yakın not-found.tsx'e gider
+}
 ```
 
 ---
 
-*Son Güncelleme: 2026-02-22*
+*Son Güncelleme: 2026-02-28*
