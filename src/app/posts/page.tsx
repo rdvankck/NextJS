@@ -14,8 +14,7 @@ export default function PostsPage() {
               <li key={post.id}>
                 <Link
                   href={`/posts/${post.id}`}
-                  className="text-blue-600 hover:underline"
-                >
+                  className="text-blue-600 hover:underline">
                   {post.title}
                 </Link>
               </li>

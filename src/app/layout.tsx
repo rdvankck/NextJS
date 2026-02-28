@@ -36,6 +36,9 @@ export default function RootLayout({
             <a href="/about" className="hover:underline">
               About
             </a>
+            <a href="/posts" className="hover:underline">
+              Posts
+            </a>
           </nav>
         </header>
 
