@@ -7,7 +7,7 @@ type Product = {
 
 async function getProducts(): Promise<Product[]> {
   const res = await fetch("https://fakestoreapi.com/products", {
-    cache: "force-cache", // Ürünler sık değişmez, cache'le
+    cache: "force-cache",
   });
   if (!res.ok) throw new Error("Failed to fetch products");
   return res.json();
