@@ -2,7 +2,7 @@
 
 ## Genel Durum
 - **Başlangıç Tarihi:** 2026-02-28
-- **Mevcut Hafta:** Hafta 1
+- **Mevcut Hafta:** Hafta 3
 - **Proje:** my-next-app
 
 ---
@@ -78,37 +78,88 @@
 
 ---
 
-## Hafta 1 Özet
+## Hafta 2: Data Fetching & Caching ✅ TAMAMLANDI
 
-| Konu | Durum |
-|------|-------|
-| File-based Routing | ✅ Tamamlandı |
-| Server vs Client Components | ✅ Tamamlandı |
-| Dynamic Routes & 404 | ✅ Tamamlandı |
-| Navigation | ✅ Tamamlandı |
+### ✅ Konu 1: Server-side Data Fetching
+
+#### Öğrenilen Konular:
+- [x] Async component'ler yazma
+- [x] Component içinde direkt `fetch` kullanımı
+- [x] TypeScript ile tip güvenliği
+
+#### Yapılan Uygulamalar:
+- [x] `/users` sayfası oluşturuldu (JSONPlaceholder API)
+- [x] `User` type tanımlandı
+- [x] `getUsers()` async fonksiyonu yazıldı
 
 ---
 
-## Hafta 2: Data Fetching & Caching ⏳ SONRAKİ
+### ✅ Konu 2: Caching Strategies
 
-### Konu 1: Server-side Data Fetching
-- [ ] Async component'ler yazma
-- [ ] Component içinde direkt `fetch` kullanımı
-- [ ] TypeScript ile tip güvenliği
+#### Öğrenilen Konular:
+- [x] `force-cache`: Statik veri için
+- [x] `no-store`: Her zaman güncel veri için
+- [x] `revalidate`: ISR (Incremental Static Regeneration)
 
-### Konu 2: Caching Strategies
-- [ ] `force-cache`: Statik veri için
-- [ ] `no-store`: Her zaman güncel veri için
-- [ ] `revalidate`: ISR (Incremental Static Regeneration)
+#### Yapılan Uygulamalar:
+- [x] `/products` sayfası (`force-cache` ile FakeStore API)
+- [x] `/news` sayfası (`revalidate: 120` ile ISR)
 
-### Konu 3: Server Actions
-- [ ] Server Action nedir
-- [ ] `"use server"` direktifi
-- [ ] Form submission ile Server Action
+---
 
-### Konu 4: Data Mutations
-- [ ] `revalidatePath` ile cache yenileme
-- [ ] `revalidateTag` ile tag-based revalidation
+### ✅ Konu 3: Server Actions
+
+#### Öğrenilen Konular:
+- [x] Server Action nedir
+- [x] `"use server"` direktifi
+- [x] Form submission ile Server Action
+- [x] `formData.get()` ile veri alma
+
+#### Yapılan Uygulamalar:
+- [x] `/contacts` sayfası (iletişim formu)
+- [x] Form ile Server Action bağlama
+
+---
+
+### ✅ Konu 4: Data Mutations
+
+#### Öğrenilen Konular:
+- [x] `revalidatePath` ile cache yenileme
+- [x] `redirect()` ile sayfa yönlendirme
+
+#### Yapılan Uygulamalar:
+- [x] `/thank-you` sayfası (yönlendirme)
+- [x] `/todos` sayfası (todo ekleme + revalidatePath)
+
+---
+
+## Hafta 2 Özet
+
+| Konu | Durum |
+|------|-------|
+| Server-side Data Fetching | ✅ Tamamlandı |
+| Caching (force-cache, revalidate) | ✅ Tamamlandı |
+| Server Actions | ✅ Tamamlandı |
+| redirect() & revalidatePath() | ✅ Tamamlandı |
+
+---
+
+## Hafta 3: ⏳ SONRAKİ
+
+### Konu 1: API Routes
+- [ ] Route Handlers (`route.ts`)
+- [ ] GET, POST, PUT, DELETE
+- [ ] JSON response
+
+### Konu 2: Middleware
+- [ ] `middleware.ts` dosyası
+- [ ] Request拦截 (interception)
+- [ ] Authentication kontrolü
+
+### Konu 3: SEO & Metadata
+- [ ] `metadata` export
+- [ ] Dinamik metadata
+- [ ] Open Graph
 
 ---
 
@@ -127,16 +178,64 @@ src/app/
 │   └── Navigation.tsx      → Navigation buttons
 ├── about/
 │   └── page.tsx            → /about
-└── posts/
-    ├── page.tsx            → /posts (liste)
-    ├── not-found.tsx       → Post bulunamadı
-    └── [id]/
-        └── page.tsx        → /posts/1, /posts/2...
+├── posts/
+│   ├── page.tsx            → /posts (liste)
+│   ├── not-found.tsx       → Post bulunamadı
+│   └── [id]/
+│       └── page.tsx        → /posts/1, /posts/2...
+├── users/
+│   └── page.tsx            → /users (server-side fetch)
+├── products/
+│   └── page.tsx            → /products (force-cache)
+├── news/
+│   └── page.tsx            → /news (ISR revalidate)
+├── contacts/
+│   └── page.tsx            → /contacts (Server Action form)
+├── thank-you/
+│   └── page.tsx            → /thank-you (redirect)
+└── todos/
+    └── page.tsx            → /todos (revalidatePath)
 ```
 
 ---
 
 ## Önemli Notlar
+
+### Server Action
+```tsx
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+
+async function submitForm(formData: FormData) {
+  "use server";
+
+  const name = formData.get("name");
+  revalidatePath("/todos");  // Cache yenile
+  redirect("/thank-you");    // Yönlendir
+}
+```
+
+### Caching Strategies
+```tsx
+// Cache'le, bir daha istek atma
+cache: "force-cache"
+
+// Her zaman yeni veri çek
+cache: "no-store"
+
+// 60 saniyede bir yenile
+next: { revalidate: 60 }
+```
+
+### Dynamic Routes
+```tsx
+// app/posts/[id]/page.tsx
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+const { id } = await params;  // Next.js 15: await gerekli!
+```
 
 ### Navigation Hooks
 ```tsx
@@ -151,25 +250,6 @@ router.back();         // Geri dön
 router.refresh();      // Yenile
 ```
 
-### Dynamic Routes
-```tsx
-// app/posts/[id]/page.tsx
-type Props = {
-  params: Promise<{ id: string }>;
-};
-
-const { id } = await params;  // Next.js 15: await gerekli!
-```
-
-### notFound() Fonksiyonu
-```tsx
-import { notFound } from "next/navigation";
-
-if (!post) {
-  notFound();  // En yakın not-found.tsx'e gider
-}
-```
-
 ---
 
-*Son Güncelleme: 2026-02-28*
+*Son Güncelleme: 2026-03-22*
