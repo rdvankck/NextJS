@@ -1,10 +1,13 @@
+import { redirect } from "next/navigation";
+
 async function submitContact(formData: FormData) {
   "use server";
 
   const name = formData.get("name");
   const email = formData.get("email");
 
-  console.log("Yeni iletişim:", name, email);
+  console.log("New Contact:", name, email);
+  redirect("/thank-you");
 }
 
 export default function ContactsPage() {
