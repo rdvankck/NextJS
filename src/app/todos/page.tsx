@@ -1,16 +1,4 @@
-import { revalidatePath } from "next/cache";
-
-let todos: string[] = ["Server Action Practice", "Learn Next.js", "Learn React"];
-
-async function addTodo(formData: FormData) {
-  "use server";
-
-  const title = formData.get("title") as string;
-  if (title) {
-    todos.push(title);
-    revalidatePath("/todos");
-  }
-}
+import { addTodo, todos } from "./actions";
 
 export default function TodosPage() {
   return (
