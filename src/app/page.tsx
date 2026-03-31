@@ -1,6 +1,13 @@
 import Link from "next/link";
+import { Metadata } from "next";
 import Counter from "./components/Counter";
 import Navigation from "./components/Navigation";
+
+export const metadata: Metadata = {
+  title: "My Next.js App | Home",
+  description: "Learning Next.js - Week 3",
+  keywords: ["Next.js", "React", "TypeScript", "Web Development"],
+};
 
 export default function Home() {
   return (
