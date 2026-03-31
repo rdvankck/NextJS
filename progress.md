@@ -2,7 +2,7 @@
 
 ## Genel Durum
 - **Başlangıç Tarihi:** 2026-02-28
-- **Mevcut Hafta:** Hafta 3
+- **Mevcut Hafta:** Hafta 4
 - **Proje:** my-next-app
 
 ---
@@ -133,73 +133,159 @@
 
 ---
 
-## Hafta 2 Özet
+## Hafta 3: API Routes & Middleware ✅ TAMAMLANDI
 
-| Konu | Durum |
-|------|-------|
-| Server-side Data Fetching | ✅ Tamamlandı |
-| Caching (force-cache, revalidate) | ✅ Tamamlandı |
-| Server Actions | ✅ Tamamlandı |
-| redirect() & revalidatePath() | ✅ Tamamlandı |
+### ✅ Konu 1: API Routes
+
+#### Öğrenilen Konular:
+- [x] Route Handlers (`route.ts`)
+- [x] GET, POST, PUT, DELETE
+- [x] `NextResponse.json()` ile response
+- [x] Dinamik API Routes (`[id]/route.ts`)
+
+#### Yapılan Uygulamalar:
+- [x] `/api/users` - GET (listele), POST (ekle)
+- [x] `/api/users/[id]` - GET (tek), PUT (güncelle), DELETE (sil)
 
 ---
 
-## Hafta 3: ⏳ SONRAKİ
+### ✅ Konu 2: Middleware
 
-### Konu 1: API Routes
-- [ ] Route Handlers (`route.ts`)
-- [ ] GET, POST, PUT, DELETE
-- [ ] JSON response
+#### Öğrenilen Konular:
+- [x] `middleware.ts` dosyası
+- [x] `NextResponse.next()` ve `NextResponse.redirect()`
+- [x] `matcher` config ile route filtreleme
+- [x] Cookie'den veri okuma
 
-### Konu 2: Middleware
-- [ ] `middleware.ts` dosyası
-- [ ] Request拦截 (interception)
-- [ ] Authentication kontrolü
+#### Yapılan Uygulamalar:
+- [x] `/admin` korumalı route
+- [x] Token kontrolü ile authentication
 
-### Konu 3: SEO & Metadata
-- [ ] `metadata` export
-- [ ] Dinamik metadata
-- [ ] Open Graph
+---
+
+### ✅ Konu 3: SEO & Metadata
+
+#### Öğrenilen Konular:
+- [x] `metadata` export
+- [x] `title`, `description`, `keywords`
+- [x] `generateMetadata` ile dinamik metadata
+
+#### Yapılan Uygulamalar:
+- [x] Ana sayfa metadata eklendi
+
+---
+
+## Hafta 3 Özet
+
+| Konu | Durum |
+|------|-------|
+| API Routes (GET, POST) | ✅ Tamamlandı |
+| Dinamik API Routes (PUT, DELETE) | ✅ Tamamlandı |
+| Middleware | ✅ Tamamlandı |
+| SEO & Metadata | ✅ Tamamlandı |
+
+---
+
+## Hafta 4: ⏳ SONRAKİ
+
+### Konu 1: Authentication
+- [ ] NextAuth.js kurulumu
+- [ ] Login/Logout
+- [ ] Protected routes
+
+### Konu 2: Database
+- [ ] Prisma kurulumu
+- [ ] CRUD işlemleri
+
+### Konu 3: Deployment
+- [ ] Vercel deploy
+- [ ] Environment variables
 
 ---
 
 ## Proje Yapısı
 
 ```
-src/app/
-├── layout.tsx              → Root layout (Header + Footer)
-├── page.tsx                → Ana sayfa (/)
-├── loading.tsx             → Yükleme UI
-├── error.tsx               → Hata UI
-├── not-found.tsx           → 404 sayfası
-├── components/
-│   ├── Counter.tsx         → Client Component (useState)
-│   ├── BackButton.tsx      → Geri dön butonu
-│   └── Navigation.tsx      → Navigation buttons
-├── about/
-│   └── page.tsx            → /about
-├── posts/
-│   ├── page.tsx            → /posts (liste)
-│   ├── not-found.tsx       → Post bulunamadı
-│   └── [id]/
-│       └── page.tsx        → /posts/1, /posts/2...
-├── users/
-│   └── page.tsx            → /users (server-side fetch)
-├── products/
-│   └── page.tsx            → /products (force-cache)
-├── news/
-│   └── page.tsx            → /news (ISR revalidate)
-├── contacts/
-│   └── page.tsx            → /contacts (Server Action form)
-├── thank-you/
-│   └── page.tsx            → /thank-you (redirect)
-└── todos/
-    └── page.tsx            → /todos (revalidatePath)
+src/
+├── middleware.ts           → Admin route koruması
+├── app/
+│   ├── layout.tsx          → Root layout
+│   ├── page.tsx            → Ana sayfa (/)
+│   ├── loading.tsx         → Yükleme UI
+│   ├── error.tsx           → Hata UI
+│   ├── not-found.tsx       → 404 sayfası
+│   ├── components/
+│   │   ├── Counter.tsx     → Client Component
+│   │   ├── BackButton.tsx  → Geri dön butonu
+│   │   └── Navigation.tsx  → Navigation buttons
+│   ├── api/
+│   │   └── users/
+│   │       ├── route.ts    → GET, POST /api/users
+│   │       └── [id]/
+│   │           └── route.ts → GET, PUT, DELETE /api/users/:id
+│   ├── about/
+│   │   └── page.tsx        → /about
+│   ├── posts/
+│   │   ├── page.tsx        → /posts (liste)
+│   │   ├── not-found.tsx   → Post bulunamadı
+│   │   └── [id]/
+│   │       └── page.tsx    → /posts/1, /posts/2...
+│   ├── users/
+│   │   └── page.tsx        → /users (server-side fetch)
+│   ├── products/
+│   │   └── page.tsx        → /products (force-cache)
+│   ├── news/
+│   │   └── page.tsx        → /news (ISR revalidate)
+│   ├── contacts/
+│   │   └── page.tsx        → /contacts (Server Action form)
+│   ├── thank-you/
+│   │   └── page.tsx        → /thank-you (redirect)
+│   ├── todos/
+│   │   ├── actions.ts      → Server Action
+│   │   └── page.tsx        → /todos (revalidatePath)
+│   ├── admin/
+│   │   └── page.tsx        → /admin (korumalı)
+│   └── login/
+│       └── page.tsx        → /login
 ```
 
 ---
 
 ## Önemli Notlar
+
+### API Routes
+```tsx
+import { NextResponse } from "next/server";
+
+export async function GET() {
+  return NextResponse.json(users);
+}
+
+export async function POST(request: Request) {
+  const body = await request.json();
+  return NextResponse.json(newUser, { status: 201 });
+}
+```
+
+### Middleware
+```tsx
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get("token")?.value;
+
+  if (!token) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: "/admin/:path*",
+};
+```
 
 ### Server Action
 ```tsx
@@ -210,46 +296,29 @@ async function submitForm(formData: FormData) {
   "use server";
 
   const name = formData.get("name");
-  revalidatePath("/todos");  // Cache yenile
-  redirect("/thank-you");    // Yönlendir
+  revalidatePath("/todos");
+  redirect("/thank-you");
 }
 ```
 
 ### Caching Strategies
 ```tsx
-// Cache'le, bir daha istek atma
-cache: "force-cache"
-
-// Her zaman yeni veri çek
-cache: "no-store"
-
-// 60 saniyede bir yenile
-next: { revalidate: 60 }
+cache: "force-cache"        // Statik veri
+cache: "no-store"           // Her zaman güncel
+next: { revalidate: 60 }    // 60 saniyede bir yenile
 ```
 
-### Dynamic Routes
+### Metadata (SEO)
 ```tsx
-// app/posts/[id]/page.tsx
-type Props = {
-  params: Promise<{ id: string }>;
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "My App",
+  description: "Açıklama",
+  keywords: ["Next.js", "React"],
 };
-
-const { id } = await params;  // Next.js 15: await gerekli!
-```
-
-### Navigation Hooks
-```tsx
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
-
-const router = useRouter();
-const pathname = usePathname();
-const searchParams = useSearchParams();
-
-router.push("/");      // Sayfaya git
-router.back();         // Geri dön
-router.refresh();      // Yenile
 ```
 
 ---
 
-*Son Güncelleme: 2026-03-22*
+*Son Güncelleme: 2026-03-31*
