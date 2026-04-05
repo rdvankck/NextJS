@@ -1,18 +1,21 @@
+import { auth } from "@/app/api/auth/[...nextauth]/route";
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+export default auth((req) => {
+  const { nextUrl, auth: session } = req;
 
-  const token = request.cookies.get("token")?.value;
+  const protectedRoutes = ["/admin", "/dashboard"];
+  const isProtected = protectedRoutes.some((route) =>
+    nextUrl.pathname.startsWith(route)
+  );
 
-  if (!token) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  if (isProtected && !session) {
+    return NextResponse.redirect(new URL("/login", nextUrl));
   }
 
   return NextResponse.next();
-}
+});
 
 export const config = {
-  matcher: "/admin/:path*",
+  matcher: ["/admin/:path*", "/dashboard/:path*"],
 };
